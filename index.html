@@ -136,12 +136,12 @@
           <div style="position: relative; align-self: stretch; min-height: 460px;" data-hero-canvas-wrap="1">
             <sc-if value="{{ use3d }}" hint-placeholder-val="{{ true }}">
               <div ref="{{ bindHeroWrap }}" style="position: absolute; inset: -40px -10px -10px 0; border-radius: 8px; overflow: hidden;">
-                <canvas ref="{{ bindHeroCanvas }}" aria-label="Visualisasi data 3D interaktif: partikel acak menata diri menjadi bentuk yang dipilih (pipeline data, dashboard, distribusi, atau bar chart). Seret untuk memutar; arahkan kursor untuk melihat label data." role="img" tabindex="0" style="width: 100%; height: 100%; display: block; cursor: grab;"></canvas>
+                <canvas ref="{{ bindHeroCanvas }}" aria-label="Visualisasi data 3D interaktif: dari data mentah yang berantakan, partikel menata diri menjadi bentuk yang dipilih (pipeline, dashboard, distribusi, atau bar chart). Seret untuk memutar; arahkan kursor untuk melihat label data." role="img" tabindex="0" style="width: 100%; height: 100%; display: block; cursor: grab;"></canvas>
                 <div aria-hidden="true" style="position: absolute; left: 16px; top: 14px; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(169,182,158,0.7); display: flex; align-items: center; gap: 8px; pointer-events: none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg>
                   Seret · hover label · scroll merapikan
                 </div>
-                <div role="group" aria-label="Pilih bentuk visualisasi data" style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 5; display: flex; gap: 3px; padding: 5px; background: rgba(11,14,13,0.72); border: 1px solid rgba(33,86,74,0.6); border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);">
+                <div role="group" aria-label="Pilih bentuk visualisasi data" style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; max-width: 94%; gap: 3px; padding: 5px; background: rgba(11,14,13,0.72); border: 1px solid rgba(33,86,74,0.6); border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);">
                   <sc-for list="{{ heroModes }}" as="hm" hint-placeholder-count="4">
                     <button type="button" onClick="{{ hm.onClick }}" aria-pressed="{{ hm.pressed }}" title="{{ hm.title }}" style="{{ hm.style }}" style-hover="color: #ECEAE2;">{{ hm.label }}</button>
                   </sc-for>
@@ -1043,7 +1043,20 @@ class Component extends DCLogic {
       return o;
     })();
 
-    return { N, modes: { pipeline, dashboard, histogram, bars } };
+    // ---------- BERANTAKAN: raw, scattered, unsorted cloud (the "before") ----------
+    const berantakan = (() => {
+      const o = mk();
+      for (let p = 0; p < N; p++) {
+        const i3 = p * 3;
+        o.pos[i3] = rnd(18); o.pos[i3 + 1] = 0.6 + Math.random() * 9.4; o.pos[i3 + 2] = rnd(6);
+        const r = Math.random();
+        const base = r < 0.45 ? cEmDk : (r < 0.72 ? cEm : (r < 0.9 ? cGold : cGold2));
+        setC(o, i3, base.clone().lerp(cEmDk, Math.random() * 0.35));
+      }
+      o.labels = [{ x: -6.5, y: 9, z: 0, text: "Data mentah" }, { x: 5.5, y: 7.6, z: 1.5, text: "Belum tertata" }, { x: 0.5, y: 1.8, z: 2, text: "Acak, berulang" }];
+      return o;
+    })();
+    return { N, modes: { berantakan, pipeline, dashboard, histogram, bars } };
   }
 
   switchHeroMode = (mode) => {
@@ -1443,6 +1456,7 @@ class Component extends DCLogic {
       bindNetWrap: this.bindNetWrap, bindNetCanvas: this.bindNetCanvas,
       heroMode: s.heroMode,
       heroModes: [
+        { key: "berantakan", label: "Berantakan", title: "Data mentah yang masih acak, belum tertata, dan penuh duplikat" },
         { key: "pipeline", label: "Pipeline", title: "Konsolidasi data: sumber tersebar menyatu jadi satu sumber kebenaran" },
         { key: "dashboard", label: "Dashboard", title: "Spreadsheet berantakan menyusun jadi widget dashboard" },
         { key: "histogram", label: "Distribusi", title: "Titik data membentuk kurva distribusi statistik" },
