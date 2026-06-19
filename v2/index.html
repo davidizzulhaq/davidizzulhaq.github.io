@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Izzulhaq, Spesialis Excel, Data & Dokumen Bisnis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E0D; --bg2:#0F1513; --panel:#121A17; --ink:#ECEAE2; --mut:#94A39B;
+  --em:#16463B; --em-line:#21564A; --gold:#C99A3C; --gold-br:#E2B65A; --hair:rgba(236,234,226,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.serif{font-family:Fraunces,Georgia,serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(11,14,13,.72);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:Fraunces,serif;font-size:21px;font-weight:600;letter-spacing:.01em}
+.brand b{color:var(--gold)}
+.navlinks{display:flex;gap:34px;font-size:14.5px;color:var(--mut)}
+.navlinks a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;padding:11px 20px;border-radius:2px;transition:.2s}
+.btn-gold{background:var(--gold);color:#1A1206}
+.btn-gold:hover{background:var(--gold-br)}
+.btn-ghost{border:1px solid var(--em-line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* hero */
+.hero{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center;min-height:84vh;padding:60px 0 40px}
+.hero h1{font-family:Fraunces,serif;font-weight:500;font-size:62px;line-height:1.04;letter-spacing:-.015em;margin:22px 0 0}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p.lead{font-size:18px;color:var(--mut);max-width:520px;margin:26px 0 34px;line-height:1.7}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{position:relative;height:520px}
+#three{position:absolute;inset:0}
+.orbit-label{position:absolute;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+
+/* marquee strip */
+.strip{position:relative;z-index:2;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:var(--bg2)}
+.strip .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding-top:26px;padding-bottom:26px}
+.stat .k{font-family:Fraunces,serif;font-size:30px;font-weight:500;color:var(--ink)}
+.stat .l{font-size:13px;color:var(--mut);letter-spacing:.02em}
+
+/* sections */
+section{position:relative;z-index:2;padding:96px 0}
+.sechead{display:flex;align-items:baseline;gap:18px;margin-bottom:42px}
+.sechead .no{font-family:Fraunces,serif;font-size:15px;color:var(--gold)}
+.sechead h2{font-family:Fraunces,serif;font-weight:500;font-size:36px;letter-spacing:-.01em}
+.sechead .meta{margin-left:auto;font-size:14px;color:var(--mut);max-width:300px;text-align:right}
+
+/* portfolio */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.card{background:var(--panel);border:1px solid var(--hair);border-radius:4px;overflow:hidden;transition:.25s;cursor:pointer}
+.card:hover{border-color:var(--em-line);transform:translateY(-3px)}
+.card .thumb{aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--hair);background:#0c100e}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.4s}
+.card:hover .thumb img{transform:scale(1.03)}
+.card .body{padding:22px 24px 26px}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.card .no{font-family:Fraunces,serif;font-size:14px;color:var(--gold)}
+.card .tag{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);border:1px solid var(--hair);padding:4px 10px;border-radius:2px}
+.card h3{font-family:Fraunces,serif;font-weight:500;font-size:21px;margin-bottom:7px}
+.card p{font-size:14px;color:var(--mut);line-height:1.6}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:4px;overflow:hidden}
+.svc>div{background:var(--bg);padding:30px 26px;min-height:210px}
+.svc .ic{width:42px;height:42px;border:1px solid var(--em-line);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:Fraunces,serif;font-size:18px;margin-bottom:20px}
+.svc h4{font-family:Fraunces,serif;font-weight:500;font-size:18px;margin-bottom:10px}
+.svc p{font-size:13.5px;color:var(--mut);line-height:1.6}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.step .n{font-family:Fraunces,serif;font-size:13px;color:var(--gold);letter-spacing:.1em}
+.step h4{font-family:Fraunces,serif;font-weight:500;font-size:19px;margin:12px 0 8px;padding-top:16px;border-top:1px solid var(--em-line)}
+.step p{font-size:13.5px;color:var(--mut)}
+
+/* cta */
+.cta{position:relative;z-index:2;background:var(--em);margin:0 40px;border-radius:6px}
+.cta-in{max-width:1100px;margin:0 auto;padding:72px 60px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta h2{font-family:Fraunces,serif;font-weight:500;font-size:38px;letter-spacing:-.01em;max-width:560px;line-height:1.12}
+.cta p{color:#B9CFC6;margin-top:14px;font-size:15.5px}
+
+footer{position:relative;z-index:2;border-top:1px solid var(--hair);margin-top:96px;padding:48px 0 60px;color:var(--mut);font-size:13.5px}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}.hero-visual{height:340px;order:-1}.hero h1{font-size:44px}
+  .grid,.svc,.steps{grid-template-columns:1fr}.wrap{padding:0 24px}.cta{margin:0 24px}.cta-in{padding:48px 30px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <div class="brand">David <b>Izzulhaq</b></div>
+  <div class="navlinks">
+    <a href="#karya">Karya</a><a href="#layanan">Layanan</a><a href="#proses">Proses</a><a href="#kontak">Kontak</a>
+  </div>
+  <a class="btn btn-gold" href="#kontak">Mulai proyek</a>
+</div></nav>
+
+<header class="wrap hero">
+  <div>
+    <span class="eyebrow">Excel · Data · Dokumen Bisnis</span>
+    <h1>Angka yang berantakan, saya rapikan jadi <em>keputusan yang jelas.</em></h1>
+    <p class="lead">Saya bantu pemilik usaha dan tim keuangan mengubah data mentah menjadi dashboard, model keuangan, dan dokumen yang rapi, otomatis, dan bisa diandalkan. Setiap file diserahkan dengan rumus hidup yang bisa Anda audit sendiri.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#karya">Lihat karya <span>&rarr;</span></a>
+      <a class="btn btn-ghost" href="#kontak">Diskusi proyek</a>
+    </div>
+  </div>
+  <div class="hero-visual"><div id="three"></div></div>
+</header>
+
+<div class="strip"><div class="wrap">
+  <div class="stat"><div class="k">10</div><div class="l">studi kasus nyata</div></div>
+  <div class="stat"><div class="k">100%</div><div class="l">rumus hidup, bukan tempelan</div></div>
+  <div class="stat"><div class="k">3</div><div class="l">format: Excel, Sheets, PDF</div></div>
+  <div class="stat"><div class="k">&lt;24j</div><div class="l">waktu respons</div></div>
+</div></div>
+
+<section id="karya" class="wrap">
+  <div class="sechead">
+    <span class="no">01</span><h2>Karya pilihan</h2>
+    <span class="meta">Studi kasus dengan data contoh. Tiap file dapat diunduh dan diperiksa rumusnya.</span>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="thumb"><img src="porto/01.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">01</span><span class="tag">Operasional &amp; Stok</span></div>
+      <h3>Retail Inventory Dashboard</h3><p>KPI stok, omzet, dan laba 24 SKU di 3 cabang, lengkap deteksi barang yang perlu restok.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/02.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">02</span><span class="tag">Model Keuangan</span></div>
+      <h3>Proyeksi Arus Kas 12 Bulan</h3><p>Model dinamis berbasis asumsi, memetakan titik kas terendah dan runway sepanjang tahun.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/03.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">03</span><span class="tag">Kalkulator Harga</span></div>
+      <h3>HPP &amp; Pricing Engine F&amp;B</h3><p>Hitung harga pokok dari resep. Ubah harga bahan, seluruh harga jual menyesuaikan otomatis.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/04.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">04</span><span class="tag">Keuangan &amp; Audit</span></div>
+      <h3>Rekonsiliasi Marketplace</h3><p>Cocokkan settlement Shopee, Tokopedia, dan TikTok ke mutasi bank. Temukan dana nyangkut.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/05.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">05</span><span class="tag">HR &amp; Pajak</span></div>
+      <h3>Penggajian &amp; PPh 21</h3><p>Gaji bersih, potongan BPJS, dan PPh 21 progresif sesuai UU HPP, otomatis per status PTKP.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/06.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">06</span><span class="tag">Penjualan</span></div>
+      <h3>Sales Commission Tracker</h3><p>Komisi berjenjang dan bonus target dihitung otomatis, lengkap pemantauan top performer.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/07.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">07</span><span class="tag">Presentasi</span></div>
+      <h3>Pitch Deck Investor / KUR</h3><p>Enam slide desain untuk pengajuan pendanaan, lengkap grafik dan narasi yang meyakinkan.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/08.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">08</span><span class="tag">Dokumen Korporat</span></div>
+      <h3>Company Profile</h3><p>Brosur perusahaan empat halaman yang rapi dan profesional, siap cetak dan dikirim.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/09.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">09</span><span class="tag">Konversi Data</span></div>
+      <h3>Konversi PDF ke Excel</h3><p>Mutasi, faktur, dan laporan PDF diubah jadi data terstruktur yang langsung bisa diolah.</p></div></div>
+    <div class="card"><div class="thumb"><img src="porto/10.png" alt=""></div><div class="body">
+      <div class="row"><span class="no">10</span><span class="tag">Ekspor</span></div>
+      <h3>Paket Dokumen Ekspor</h3><p>Commercial invoice dan packing list standar internasional untuk UMKM yang naik ke pasar global.</p></div></div>
+  </div>
+</section>
+
+<section id="layanan" class="wrap">
+  <div class="sechead"><span class="no">02</span><h2>Yang bisa saya kerjakan</h2>
+    <span class="meta">Bukan template asal pakai. Dibangun sesuai cara kerja usaha Anda.</span></div>
+  <div class="svc">
+    <div><div class="ic">i</div><h4>Dashboard &amp; Laporan</h4><p>Ubah data penjualan, stok, dan biaya menjadi satu layar ringkas yang enak dibaca pemilik.</p></div>
+    <div><div class="ic">ii</div><h4>Model Keuangan</h4><p>Proyeksi arus kas, kelayakan usaha, dan skenario harga untuk keputusan dan pengajuan dana.</p></div>
+    <div><div class="ic">iii</div><h4>Otomasi Excel</h4><p>Pembukuan, rekonsiliasi, dan rekap yang berjalan sendiri lewat rumus, tanpa input ganda.</p></div>
+    <div><div class="ic">iv</div><h4>Dokumen Bisnis</h4><p>Invoice, penawaran, company profile, dan slip gaji yang rapi dan siap dikirim ke klien.</p></div>
+  </div>
+</section>
+
+<section id="proses" class="wrap">
+  <div class="sechead"><span class="no">03</span><h2>Cara kerja</h2>
+    <span class="meta">Empat langkah, dari obrolan singkat sampai file siap pakai.</span></div>
+  <div class="steps">
+    <div class="step"><div class="n">Langkah 01</div><h4>Dengar</h4><p>Kita bahas masalahnya dan 3 angka terpenting yang ingin Anda pantau.</p></div>
+    <div class="step"><div class="n">Langkah 02</div><h4>Rancang</h4><p>Saya susun struktur data dan tampilan, Anda setujui sebelum dibangun.</p></div>
+    <div class="step"><div class="n">Langkah 03</div><h4>Bangun</h4><p>File dikerjakan dengan rumus hidup, diuji sampai nol error.</p></div>
+    <div class="step"><div class="n">Langkah 04</div><h4>Serah</h4><p>Anda terima file plus panduan singkat cara memakainya sendiri.</p></div>
+  </div>
+</section>
+
+<div class="cta" id="kontak"><div class="cta-in">
+  <div><h2>Punya data yang perlu dirapikan?</h2>
+    <p>Ceritakan sebentar kebutuhan Anda. Saya balas dengan rencana dan estimasi, tanpa biaya.</p></div>
+  <a class="btn btn-gold" href="#" style="padding:15px 28px;font-size:15.5px">Mulai diskusi <span>&rarr;</span></a>
+</div></div>
+
+<footer class="wrap"><div class="foot">
+  <div class="brand" style="font-size:18px">David <b>Izzulhaq</b></div>
+  <div>Spesialis Excel, Data &amp; Dokumen Bisnis</div>
+  <div>&copy; 2026 David Izzulhaq</div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var host=document.getElementById('three'); if(!host||!window.THREE)return;
+  var w=host.clientWidth,h=host.clientHeight;
+  var scene=new THREE.Scene();
+  var cam=new THREE.PerspectiveCamera(40,w/h,0.1,100); cam.position.z=6;
+  var rnd=new THREE.WebGLRenderer({alpha:true,antialias:true});
+  rnd.setSize(w,h); rnd.setPixelRatio(Math.min(window.devicePixelRatio,2)); host.appendChild(rnd.domElement);
+  var grp=new THREE.Group(); scene.add(grp);
+  var ico=new THREE.IcosahedronGeometry(1.9,1);
+  var wire=new THREE.LineSegments(new THREE.WireframeGeometry(ico), new THREE.LineBasicMaterial({color:0x2C7A66,transparent:true,opacity:.85}));
+  grp.add(wire);
+  var inner=new THREE.Mesh(new THREE.IcosahedronGeometry(1.9,1), new THREE.MeshBasicMaterial({color:0x0E2E28,transparent:true,opacity:.55})); grp.add(inner);
+  var pn=420, pos=new Float32Array(pn*3);
+  for(var i=0;i<pn;i++){var r=2.7+Math.random()*1.4,t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t);pos[i*3+1]=r*Math.sin(p)*Math.sin(t);pos[i*3+2]=r*Math.cos(p);}
+  var pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xC99A3C,size:0.045,transparent:true,opacity:.9})); scene.add(pts);
+  var mx=0,my=0;
+  window.addEventListener('mousemove',function(e){mx=(e.clientX/window.innerWidth-.5);my=(e.clientY/window.innerHeight-.5);});
+  function loop(){requestAnimationFrame(loop);
+    grp.rotation.y+=0.0032; grp.rotation.x+=0.0011; pts.rotation.y-=0.0009;
+    grp.rotation.y+=(mx*0.5-grp.rotation.y*0)*0; cam.position.x+=((mx*1.2)-cam.position.x)*0.04; cam.position.y+=((-my*1.0)-cam.position.y)*0.04; cam.lookAt(0,0,0);
+    rnd.render(scene,cam);}
+  loop();
+  window.addEventListener('resize',function(){w=host.clientWidth;h=host.clientHeight;cam.aspect=w/h;cam.updateProjectionMatrix();rnd.setSize(w,h);});
+})();
+</script>
+</body>
+</html>

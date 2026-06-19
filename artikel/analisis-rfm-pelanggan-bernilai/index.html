@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Analisis RFM: Cara Tahu Pelanggan Mana yang Paling Bernilai</title>
+<meta name="description" content="Panduan praktis analisis RFM untuk menemukan pelanggan paling bernilai, siapa yang mulai pergi, dan ke mana sebaiknya anggaran pemasaran diarahkan. Oleh David Izzulhaq, Analis Data." />
+<link rel="canonical" href="https://davidizzulhaq.github.io/artikel/analisis-rfm-pelanggan-bernilai/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Analisis RFM: Cara Tahu Pelanggan Mana yang Paling Bernilai" />
+<meta property="og:description" content="Temukan pelanggan paling bernilai dan siapa yang mulai pergi, hanya dari data transaksi yang sudah Anda punya." />
+<meta name="theme-color" content="#0B0E0D" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0B0E0D;color:#ECEAE2;font-family:'Inter',system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:#E2B65A}
+  .top{border-bottom:1px solid rgba(33,86,74,0.4);background:rgba(11,14,13,0.8)}
+  .top .in{max-width:760px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:12px}
+  .badge{width:34px;height:34px;border:1px solid rgba(201,154,60,0.55);border-radius:5px;display:grid;place-items:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:18px;color:#C99A3C}
+  .top a{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:#ECEAE2;text-decoration:none}
+  main{max-width:720px;margin:0 auto;padding:48px 24px 30px}
+  .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C99A3C;font-weight:600}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:14px 0 18px}
+  h1 .g{font-style:italic;color:#C99A3C}
+  .lede{font-size:18px;color:#BBC7BF;margin-bottom:8px}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:25px;color:#ECEAE2;margin:38px 0 10px}
+  p{font-size:16.5px;color:#C8D2CB;margin:14px 0}
+  ul{margin:14px 0 14px 4px;padding-left:20px}
+  li{font-size:16.5px;color:#C8D2CB;margin:8px 0}
+  strong{color:#E2B65A}
+  .cta{margin:46px 0 10px;border:1px solid rgba(201,154,60,0.3);border-radius:10px;background:radial-gradient(120% 160% at 85% -20%, rgba(22,70,59,0.7), #0F1513 60%);padding:32px}
+  .cta h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:10px}
+  .cta p{margin:0 0 20px;color:#BBC7BF}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;padding:13px 24px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none}
+  .btn.p{background:#C99A3C;color:#0B0E0D}
+  .btn.s{border:1px solid rgba(201,154,60,0.4);color:#ECEAE2}
+  footer{max-width:720px;margin:0 auto;padding:30px 24px 70px;border-top:1px solid rgba(33,86,74,0.3);margin-top:30px;font-size:13px;color:#8b9990}
+</style>
+</head>
+<body>
+  <div class="top"><div class="in"><span class="badge">D</span><a href="/">David Izzulhaq, Analis Data</a></div></div>
+  <main>
+    <span class="eyebrow">Artikel</span>
+    <h1>Analisis RFM: cara tahu pelanggan mana yang <span class="g">paling bernilai</span></h1>
+    <p class="lede">Sebagian kecil pelanggan biasanya menyumbang sebagian besar pendapatan. Analisis RFM membantu Anda menemukan mereka, dan siapa yang diam-diam mulai pergi, hanya dari data transaksi yang sudah Anda punya.</p>
+
+    <h2>Bukan semua pelanggan sama nilainya</h2>
+    <p>Banyak bisnis memperlakukan seluruh pelanggan dengan cara yang sama: promo yang sama, perhatian yang sama, biaya pemasaran yang sama. Padahal nilai tiap pelanggan jauh berbeda. Sebagian sangat loyal dan sering belanja, sebagian lain sudah lama tidak kembali. RFM adalah cara sederhana namun kuat untuk memisahkan keduanya.</p>
+
+    <h2>Apa itu analisis RFM</h2>
+    <p>RFM menilai tiap pelanggan dari tiga sudut:</p>
+    <ul>
+      <li><strong>Recency</strong>: kapan terakhir mereka membeli. Semakin baru, semakin baik.</li>
+      <li><strong>Frequency</strong>: seberapa sering mereka membeli dalam satu periode.</li>
+      <li><strong>Monetary</strong>: seberapa besar total belanja mereka.</li>
+    </ul>
+    <p>Tiap pelanggan diberi skor pada ketiga dimensi itu, lalu dikelompokkan. Hasilnya peta yang jelas: siapa pelanggan juara, siapa yang loyal tapi belanja kecil, dan siapa yang dulu aktif tapi kini menghilang.</p>
+
+    <h2>Apa yang bisa Anda lakukan dengan hasilnya</h2>
+    <ul>
+      <li><strong>Pelanggan juara</strong> (skor tinggi di semua dimensi): jaga dengan layanan terbaik, jangan obral diskon yang tidak perlu.</li>
+      <li><strong>Loyal tapi nilai kecil</strong>: dorong naik kelas lewat bundel atau penawaran relevan.</li>
+      <li><strong>Mulai pergi</strong> (dulu sering, kini lama tidak membeli): inilah target kampanye reaktivasi. Memenangkan kembali pelanggan lama jauh lebih murah daripada mencari yang baru.</li>
+    </ul>
+    <p>Dengan kata lain, RFM mengubah pertanyaan kabur "bagaimana cara menaikkan penjualan" menjadi tindakan spesifik pada kelompok yang tepat.</p>
+
+    <h2>Data yang dibutuhkan</h2>
+    <p>Cukup riwayat transaksi: tanggal order, identitas pelanggan, dan nilai order. Dari tiga kolom itu seluruh analisis bisa dibangun. Tidak perlu sistem mahal.</p>
+
+    <div class="cta">
+      <h3>Ingin peta RFM untuk bisnis Anda?</h3>
+      <p>Saya bantu ubah data transaksi Anda menjadi segmen pelanggan yang jelas, lengkap dengan rekomendasi tindakan. Lihat studi kasusnya, atau diskusikan kebutuhan Anda.</p>
+      <div class="btns">
+        <a class="btn p" href="/#/karya/analisis-ritel-ecommerce">Lihat studi kasus RFM</a>
+        <a class="btn s" href="/#/kontak">Diskusikan kebutuhan</a>
+      </div>
+    </div>
+  </main>
+  <footer>Ditulis oleh David Izzulhaq, Analis Data &amp; BI. <a href="/">Kembali ke beranda</a></footer>
+</body>
+</html>
