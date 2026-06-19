@@ -1387,7 +1387,9 @@ class Component extends DCLogic {
     const cur = idx >= 0 ? CASES[idx] : null;
     let currentCase = null, caseSections = [], chartBars = [], nextCase = { href:"#/karya", title:"" };
     if (cur) {
-      currentCase = { ...cur, href: "#/karya/" + cur.slug, gallery: ["img/g/" + cur.slug + "-1.png", "img/g/" + cur.slug + "-2.png"], sampleHref: "data:text/plain;charset=utf-8," + encodeURIComponent("Sample placeholder untuk: " + cur.title + " (" + cur.category + "). Ganti dengan file asli .xlsx/.pbix/.pdf.") };
+      const galKeep1 = (cur.slug === "analisis-ritel-ecommerce" || cur.slug === "uji-ab-statistik");
+      const galList = galKeep1 ? ["img/g/" + cur.slug + "-1.png", "img/g/" + cur.slug + "-2.png"] : ["img/g/" + cur.slug + "-2.png"];
+      currentCase = { ...cur, href: "#/karya/" + cur.slug, gallery: galList, sampleHref: "data:text/plain;charset=utf-8," + encodeURIComponent("Sample placeholder untuk: " + cur.title + " (" + cur.category + "). Ganti dengan file asli .xlsx/.pbix/.pdf.") };
       caseSections = [
         { num:"01", title:"Masalah", body: cur.problem },
         { num:"02", title:"Pendekatan", body: cur.approach },
