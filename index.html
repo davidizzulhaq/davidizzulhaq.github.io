@@ -14,10 +14,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="David Izzulhaq, Data Analyst & BI Specialist" />
 <meta property="og:description" content="Angka yang berantakan, saya rapikan jadi keputusan yang jelas." />
-<meta property="og:image" content="https://placehold.co/1200x630/0B0E0D/C99A3C?text=David+Izzulhaq+%E2%80%94+Data+Studio" />
+<meta property="og:image" content="https://davidizzulhaq.github.io/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="David Izzulhaq, Data Analyst & BI Specialist" />
 <meta name="twitter:description" content="Angka yang berantakan, saya rapikan jadi keputusan yang jelas." />
+<meta name="twitter:image" content="https://davidizzulhaq.github.io/og.png" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0E0D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' fill='%23C99A3C' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
@@ -317,12 +320,12 @@
       <section style="background: rgba(15,21,19,0.5); border-top: 1px solid rgba(33,86,74,0.3); border-bottom: 1px solid rgba(33,86,74,0.3);">
         <div style="max-width: 1180px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 44px; align-items: center;" data-split="1">
           <div style="position: relative; min-height: 360px;" data-reveal="1">
-            <sc-if value="{{ use3d }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ net2dOn }}" hint-placeholder-val="{{ true }}">
               <div ref="{{ bindNetWrap }}" style="position: absolute; inset: 0; border-radius: 8px; overflow: hidden; border: 1px solid rgba(33,86,74,0.5); background: radial-gradient(100% 100% at 50% 0%, rgba(22,70,59,0.4), #0B0E0D 75%);">
-                <canvas ref="{{ bindNetCanvas }}" role="img" aria-label="Graf jaringan 3D: simpul-simpul data yang saling terhubung, dapat diputar." tabindex="0" style="width: 100%; height: 100%; display: block; cursor: grab;"></canvas>
+                <canvas ref="{{ bindNetCanvas }}" role="img" aria-label="Animasi data: titik-titik pengamatan yang berserakan merapat ke garis tren naik, menggambarkan data mentah yang dirapikan jadi arah yang jelas." tabindex="0" style="width: 100%; height: 100%; display: block;"></canvas>
               </div>
             </sc-if>
-            <sc-if value="{{ noFancy3d }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ net2dOff }}" hint-placeholder-val="{{ false }}">
               <div role="img" aria-label="Ilustrasi jaringan data terhubung." style="position: absolute; inset: 0; border-radius: 8px; border: 1px solid rgba(33,86,74,0.5); background: radial-gradient(100% 100% at 50% 30%, rgba(22,70,59,0.5), #0B0E0D 75%); display: grid; place-items: center;">
                 <svg width="78%" viewBox="0 0 200 160" fill="none"><g stroke="#21564A" stroke-width="0.8"><path d="M40 40L100 80M100 80L160 40M100 80L60 130M100 80L150 125M40 40L60 130M160 40L150 125"/></g><g fill="#C99A3C"><circle cx="40" cy="40" r="6"/><circle cx="160" cy="40" r="5"/><circle cx="100" cy="80" r="8"/><circle cx="60" cy="130" r="5"/><circle cx="150" cy="125" r="6"/></g></svg>
               </div>
@@ -1238,71 +1241,81 @@ class Component extends DCLogic {
   // ---------- secondary 3D network (Tentang) ----------
   bindNetWrap = (el) => { this._netWrap = el; };
   bindNetCanvas = (el) => {
-    if (el) { this._netCanvas = el; this.ensureThree(() => { if (this._netCanvas === el && !this._net) this._net = this.initNet(el); }); }
+    if (el) { this._netCanvas = el; if (!this._net) this._net = this.initNet(el); }
     else { if (this._net && this._net.dispose) this._net.dispose(); this._net = null; this._netCanvas = null; }
   };
   initNet(canvas) {
-    const THREE = window.THREE;
+    // Animasi 2D (Canvas): titik data berserakan merapat ke garis tren naik.
+    // Sengaja BERBEDA dari hero halaman depan (partikel 3D) agar tidak double.
     const wrap = this._netWrap || canvas.parentElement;
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    const w = () => Math.max(wrap.clientWidth, 1), h = () => Math.max(wrap.clientHeight, 1);
-    renderer.setSize(w(), h(), false);
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, w() / h(), 0.1, 100);
-    camera.position.set(0, 0, 15);
-    const group = new THREE.Group(); scene.add(group);
-
-    const NODES = 34, R = 5.5;
-    const nodePos = [];
-    for (let i = 0; i < NODES; i++) {
-      const y = 1 - (i / (NODES - 1)) * 2;
-      const rad = Math.sqrt(1 - y * y);
-      const theta = i * 2.399963;
-      nodePos.push(new THREE.Vector3(Math.cos(theta) * rad * R, y * R, Math.sin(theta) * rad * R));
-    }
-    // node points
-    const npArr = new Float32Array(NODES * 3);
-    nodePos.forEach((v, i) => { npArr[i*3]=v.x; npArr[i*3+1]=v.y; npArr[i*3+2]=v.z; });
-    const ngeo = new THREE.BufferGeometry();
-    ngeo.setAttribute("position", new THREE.BufferAttribute(npArr, 3));
-    const sprite = this.circleSprite();
-    const nmat = new THREE.PointsMaterial({ size: 0.55, map: sprite, color: GOLD, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
-    group.add(new THREE.Points(ngeo, nmat));
-    // edges
-    const lineVerts = [];
-    for (let i = 0; i < NODES; i++) {
-      for (let j = i + 1; j < NODES; j++) {
-        if (nodePos[i].distanceTo(nodePos[j]) < 4.4) {
-          lineVerts.push(nodePos[i].x, nodePos[i].y, nodePos[i].z, nodePos[j].x, nodePos[j].y, nodePos[j].z);
-        }
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return { dispose() {} };
+    const C_GOLD = "#C99A3C", C_GOLD2 = "#E2B65A", C_EM = "#3fa07e";
+    const pts = [
+      {t:0.00,v:0.16},{t:0.10,v:0.23},{t:0.20,v:0.19},{t:0.30,v:0.32},
+      {t:0.40,v:0.39},{t:0.50,v:0.47},{t:0.60,v:0.51},{t:0.70,v:0.63},
+      {t:0.80,v:0.70},{t:0.90,v:0.79},{t:1.00,v:0.86}
+    ];
+    const fitY0 = 0.17, fitY1 = 0.85;
+    const pad = { l:0.13, r:0.08, t:0.12, b:0.16 };
+    let W = 1, H = 1, dpr = 1;
+    const resize = () => {
+      W = Math.max(wrap.clientWidth, 1); H = Math.max(wrap.clientHeight, 1);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    const PX = (t) => (pad.l + t * (1 - pad.l - pad.r)) * W;
+    const PY = (v) => (1 - (pad.b + v * (1 - pad.t - pad.b))) * H;
+    let reduced = false;
+    try { reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+    const DUR = 2600, HOLD = 1600, FADE = 700, CYCLE = DUR + HOLD + FADE;
+    const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+    let raf = null, running = true, t0 = null;
+    const frame = (now) => {
+      raf = requestAnimationFrame(frame);
+      if (t0 === null) t0 = now;
+      const cyc = reduced ? DUR : (now - t0) % CYCLE;
+      const prog = easeOut(Math.min(cyc / DUR, 1));
+      let alpha = 1;
+      if (!reduced && cyc > DUR + HOLD) alpha = Math.max(0, 1 - (cyc - DUR - HOLD) / FADE);
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = "rgba(33,86,74,0.30)"; ctx.lineWidth = 1;
+      for (let g = 1; g <= 3; g++) { const yy = PY(g / 3 * 0.86); ctx.beginPath(); ctx.moveTo(PX(0), yy); ctx.lineTo(PX(1), yy); ctx.stroke(); }
+      ctx.strokeStyle = "rgba(33,86,74,0.7)"; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(PX(0), PY(0)); ctx.lineTo(PX(0), PY(0.98)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PX(0), PY(0)); ctx.lineTo(PX(1), PY(0)); ctx.stroke();
+      const FX = (t) => PX(t), FY = (t) => PY(fitY0 + t * (fitY1 - fitY0));
+      const steps = 48;
+      ctx.globalAlpha = 0.12 * alpha; ctx.fillStyle = C_EM;
+      ctx.beginPath(); ctx.moveTo(FX(0), PY(0));
+      for (let s = 0; s <= steps; s++) { const t = s / steps; if (t > prog) break; ctx.lineTo(FX(t), FY(t)); }
+      ctx.lineTo(FX(prog), PY(0)); ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = alpha; ctx.strokeStyle = C_EM; ctx.lineWidth = 3; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(FX(0), FY(0)); ctx.lineTo(FX(prog), FY(prog)); ctx.stroke();
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i]; if (p.t > prog + 0.005) continue;
+        ctx.globalAlpha = alpha; ctx.fillStyle = p.t > 0.5 ? C_GOLD2 : C_GOLD;
+        ctx.beginPath(); ctx.arc(PX(p.t), PY(p.v), 5, 0, Math.PI * 2); ctx.fill();
       }
-    }
-    const lgeo = new THREE.BufferGeometry();
-    lgeo.setAttribute("position", new THREE.Float32BufferAttribute(lineVerts, 3));
-    const lmat = new THREE.LineBasicMaterial({ color: 0x3fa07e, transparent: true, opacity: 0.32 });
-    group.add(new THREE.LineSegments(lgeo, lmat));
-
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; controls.dampingFactor = 0.08;
-    controls.enablePan = false; controls.enableZoom = false;
-    controls.autoRotate = true; controls.autoRotateSpeed = 0.9;
-
-    let raf = null, running = true;
-    const tick = () => { raf = requestAnimationFrame(tick); controls.update(); renderer.render(scene, camera); };
-    tick();
-    const onResize = () => { renderer.setSize(w(), h(), false); camera.aspect = w()/h(); camera.updateProjectionMatrix(); };
+      ctx.globalAlpha = alpha; ctx.fillStyle = "#ECEAE2";
+      ctx.beginPath(); ctx.arc(FX(prog), FY(prog), 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = C_GOLD2; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(FX(prog), FY(prog), 9, 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = 1;
+    };
+    raf = requestAnimationFrame(frame);
+    const onResize = () => resize();
     let ro; if (typeof ResizeObserver !== "undefined") { ro = new ResizeObserver(onResize); ro.observe(wrap); } else window.addEventListener("resize", onResize);
-    let visObs;
-    const setRunning = (on) => { if (on && !running) { running = true; raf = requestAnimationFrame(tick); } else if (!on && running) { running = false; cancelAnimationFrame(raf); } };
-    if (typeof IntersectionObserver !== "undefined") { visObs = new IntersectionObserver((es)=>es.forEach(e=>setRunning(e.isIntersecting)), {threshold:0}); visObs.observe(wrap); }
+    const setRunning = (on) => { if (on && !running) { running = true; t0 = null; raf = requestAnimationFrame(frame); } else if (!on && running) { running = false; cancelAnimationFrame(raf); } };
+    let visObs; if (typeof IntersectionObserver !== "undefined") { visObs = new IntersectionObserver((es) => es.forEach(e => setRunning(e.isIntersecting)), { threshold: 0 }); visObs.observe(wrap); }
     const onVis = () => setRunning(!document.hidden);
     document.addEventListener("visibilitychange", onVis);
     return { dispose() {
       cancelAnimationFrame(raf); document.removeEventListener("visibilitychange", onVis);
       if (ro) ro.disconnect(); else window.removeEventListener("resize", onResize);
-      if (visObs) visObs.disconnect(); controls.dispose();
-      ngeo.dispose(); nmat.dispose(); lgeo.dispose(); lmat.dispose(); sprite.dispose(); renderer.dispose();
+      if (visObs) visObs.disconnect();
     } };
   }
 
@@ -1420,7 +1433,7 @@ class Component extends DCLogic {
       navItems,
       isHome: page === "home", isTentang: page === "tentang", isKarya: page === "karya",
       isLayanan: page === "layanan", isKontak: page === "kontak", isCaseDetail: page === "caseDetail",
-      use3d: s.use3d, noFancy3d: !s.use3d,
+      use3d: s.use3d, noFancy3d: !s.use3d, net2dOn: true, net2dOff: false,
       mobileNavOpen: s.mobileNavOpen,
       routeKey: page + (s.slug || "") + s.filter,
       toggleMobileNav: this.toggleMobileNav, closeMobileNav: this.closeMobileNav,
