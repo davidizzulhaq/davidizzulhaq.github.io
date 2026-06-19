@@ -141,7 +141,7 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg>
                   Seret · hover label · scroll merapikan
                 </div>
-                <div role="group" aria-label="Pilih bentuk visualisasi data" style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; max-width: 94%; gap: 3px; padding: 5px; background: rgba(11,14,13,0.72); border: 1px solid rgba(33,86,74,0.6); border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);">
+                <div role="group" aria-label="Pilih bentuk visualisasi data" style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 5; display: flex; flex-wrap: nowrap; max-width: 96%; overflow-x: auto; gap: 2px; padding: 5px; background: rgba(11,14,13,0.72); border: 1px solid rgba(33,86,74,0.6); border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);">
                   <sc-for list="{{ heroModes }}" as="hm" hint-placeholder-count="4">
                     <button type="button" onClick="{{ hm.onClick }}" aria-pressed="{{ hm.pressed }}" title="{{ hm.title }}" style="{{ hm.style }}" style-hover="color: #ECEAE2;">{{ hm.label }}</button>
                   </sc-for>
@@ -643,7 +643,7 @@
           <span style="width: 38px; height: 38px; border: 1px solid rgba(201,154,60,0.55); border-radius: 5px; display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; font-size: 20px; color: #C99A3C;">D</span>
           <span style="font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: #ECEAE2;">David Izzulhaq</span>
         </a>
-        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: #BBC7BF; line-height: 1.5; margin: 0; max-width: 320px;">"Angka yang berantakan, saya rapikan jadi keputusan yang jelas."</p>
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: #BBC7BF; line-height: 1.5; margin: 0; max-width: 340px;">Punya data berantakan? Saya ubah jadi keputusan yang jelas. Konsultasi awal gratis.</p>
       </div>
       <div>
         <h4 style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8b9990; margin: 0 0 16px; font-weight: 600;">Halaman</h4>
@@ -1465,7 +1465,7 @@ class Component extends DCLogic {
         key: x.key, label: x.label, title: x.title, pressed: s.heroMode === x.key ? "true" : "false",
         onClick: () => this.switchHeroMode(x.key),
         style: {
-          padding: "8px 14px", fontSize: "12.5px", fontWeight: 600, fontFamily: "inherit", cursor: "pointer",
+          padding: "7px 10px", fontSize: "11.5px", fontWeight: 600, fontFamily: "inherit", cursor: "pointer",
           borderRadius: "999px", border: "none", whiteSpace: "nowrap", transition: "all .2s",
           background: s.heroMode === x.key ? "#C99A3C" : "transparent",
           color: s.heroMode === x.key ? "#0B0E0D" : "#BBC7BF"
