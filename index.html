@@ -192,8 +192,9 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px;" data-card-grid="1">
           <sc-for list="{{ featured }}" as="c" hint-placeholder-count="3">
             <a href="{{ c.href }}" data-reveal="1" style="display: flex; flex-direction: column; background: #121A17; border: 1px solid rgba(33,86,74,0.5); border-radius: 7px; overflow: hidden; text-decoration: none;" style-hover="border-color: rgba(201,154,60,0.55); transform: translateY(-3px);">
-              <div style="aspect-ratio: 16/10; background: {{ c.thumbBg }}; position: relative; display: flex; align-items: flex-end; padding: 18px;">
-                <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #0B0E0D; background: #E2B65A; padding: 5px 11px; border-radius: 3px; font-weight: 700;">{{ c.category }}</span>
+              <div style="aspect-ratio: 16/10; background: #FBFBF8; position: relative; display: flex; align-items: flex-end; padding: 14px; overflow: hidden; border-bottom: 1px solid rgba(33,86,74,0.4);">
+                <img src="{{ c.image }}" alt="" loading="lazy" style="position: absolute; inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); object-fit: contain; object-position: center;" />
+                <span style="position: relative; z-index: 1; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #0B0E0D; background: #E2B65A; padding: 5px 11px; border-radius: 3px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">{{ c.category }}</span>
               </div>
               <div style="padding: 22px;">
                 <h3 style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; margin: 0 0 8px; color: #ECEAE2;">{{ c.title }}</h3>
@@ -373,8 +374,9 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px;" data-card-grid="1">
           <sc-for list="{{ filteredCases }}" as="c" hint-placeholder-count="6">
             <a href="{{ c.href }}" style="display: flex; flex-direction: column; background: #121A17; border: 1px solid rgba(33,86,74,0.5); border-radius: 7px; overflow: hidden; text-decoration: none;" style-hover="border-color: rgba(201,154,60,0.55); transform: translateY(-3px);">
-              <div style="aspect-ratio: 16/10; background: {{ c.thumbBg }}; position: relative; display: flex; align-items: flex-end; padding: 18px;">
-                <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #0B0E0D; background: #E2B65A; padding: 5px 11px; border-radius: 3px; font-weight: 700;">{{ c.category }}</span>
+              <div style="aspect-ratio: 16/10; background: #FBFBF8; position: relative; display: flex; align-items: flex-end; padding: 14px; overflow: hidden; border-bottom: 1px solid rgba(33,86,74,0.4);">
+                <img src="{{ c.image }}" alt="" loading="lazy" style="position: absolute; inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); object-fit: contain; object-position: center;" />
+                <span style="position: relative; z-index: 1; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #0B0E0D; background: #E2B65A; padding: 5px 11px; border-radius: 3px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">{{ c.category }}</span>
               </div>
               <div style="padding: 22px; display: flex; flex-direction: column; flex: 1;">
                 <h3 style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; margin: 0 0 8px; color: #ECEAE2;">{{ c.title }}</h3>
@@ -409,9 +411,14 @@
           <div><div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8b9990; margin-bottom: 5px;">Durasi</div><div style="font-size: 14.5px; color: #ECEAE2; font-weight: 500;">{{ currentCase.duration }}</div></div>
         </div>
 
-        <div style="margin: 32px 0; border-radius: 8px; border: 1px solid rgba(33,86,74,0.5); background: #ffffff; padding: 16px; overflow: hidden;">
+        <div style="margin: 32px 0 18px; border-radius: 8px; border: 1px solid rgba(33,86,74,0.5); background: #ffffff; padding: 16px; overflow: hidden;">
           <img src="{{ currentCase.image }}" alt="{{ currentCase.imgAlt }}" style="width: 100%; display: block; border-radius: 2px;" />
         </div>
+        <sc-for list="{{ currentCase.gallery }}" as="g" hint-placeholder-count="2">
+          <div style="margin: 18px 0; border-radius: 8px; border: 1px solid rgba(33,86,74,0.5); background: #ffffff; padding: 16px; overflow: hidden;">
+            <img src="{{ g }}" alt="Grafik analisis pendukung" loading="lazy" style="width: 100%; display: block; border-radius: 2px;" />
+          </div>
+        </sc-for>
 
         <sc-for list="{{ caseSections }}" as="sec" hint-placeholder-count="4">
           <div style="margin-bottom: 30px;">
@@ -531,7 +538,7 @@
         <div data-reveal="1" style="text-align: center; margin-bottom: 44px;">
           <span style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #C99A3C; font-weight: 600;">Paket harga</span>
           <h2 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(28px, 3.4vw, 40px); margin: 12px 0 0; color: #ECEAE2;">Harga jelas sejak awal</h2>
-          <p style="font-size: 14.5px; color: #A9B6AE; margin: 14px auto 0; max-width: 520px; line-height: 1.6;">Harga indikatif untuk membantu Anda merencanakan. Penawaran final menyesuaikan kompleksitas data.</p>
+          <p style="font-size: 14.5px; color: #A9B6AE; margin: 14px auto 0; max-width: 520px; line-height: 1.6;">Harga perkenalan selama saya membangun portofolio, jadi Anda dapat kualitas analis dengan tarif yang ramah. Penawaran final menyesuaikan kompleksitas data.</p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; align-items: stretch;" data-card-grid="1">
           <sc-for list="{{ pricing }}" as="tier" hint-placeholder-count="3">
@@ -793,10 +800,10 @@ const PROCESS = [
 ];
 
 const PRICING = [
-  { name:"Basic", tagline:"Untuk satu kebutuhan spesifik yang ingin cepat selesai.", pricePrefix:"mulai dari", price:"Rp 1,5 jt", popular:false,
-    features:["1 dashboard atau 1 model","Hingga 2 sumber data","Revisi 2×","File siap pakai + dokumentasi rumus"], cta:"Pilih Basic" },
-  { name:"Pro", tagline:"Solusi lengkap untuk bisnis yang ingin sistem data rapi.", pricePrefix:"mulai dari", price:"Rp 4,5 jt", popular:true,
-    features:["Dashboard + model + otomasi ringan","Hingga 5 sumber data","Revisi 4×","Sesi handover & pelatihan singkat","Dukungan 30 hari"], cta:"Pilih Pro" },
+  { name:"Basic", tagline:"Satu analisis atau dashboard untuk kebutuhan spesifik.", pricePrefix:"mulai", price:"Rp 150 rb", popular:false,
+    features:["1 dashboard atau 1 analisis","Hingga 2 sumber data","Revisi 2×","File siap pakai + dokumentasi rumus"], cta:"Pilih Basic" },
+  { name:"Pro", tagline:"Analisis lengkap plus dashboard dan rekomendasi tindakan.", pricePrefix:"mulai", price:"Rp 650 rb", popular:true,
+    features:["Analisis + dashboard + rekomendasi","Hingga 5 sumber data","Revisi 3×","Sesi penjelasan hasil","Dukungan 14 hari"], cta:"Pilih Pro" },
   { name:"Custom", tagline:"Proyek BI end-to-end dengan kebutuhan khusus.", pricePrefix:"", price:"Hubungi", popular:false,
     features:["Lingkup BI menyeluruh","Integrasi database & otomasi penuh","Revisi sesuai kesepakatan","Dukungan bulanan berkelanjutan"], cta:"Diskusikan kebutuhan" }
 ];
@@ -1373,7 +1380,7 @@ class Component extends DCLogic {
     const cur = idx >= 0 ? CASES[idx] : null;
     let currentCase = null, caseSections = [], chartBars = [], nextCase = { href:"#/karya", title:"" };
     if (cur) {
-      currentCase = { ...cur, href: "#/karya/" + cur.slug, sampleHref: "data:text/plain;charset=utf-8," + encodeURIComponent("Sample placeholder untuk: " + cur.title + " (" + cur.category + "). Ganti dengan file asli .xlsx/.pbix/.pdf.") };
+      currentCase = { ...cur, href: "#/karya/" + cur.slug, gallery: ["img/g/" + cur.slug + "-1.png", "img/g/" + cur.slug + "-2.png"], sampleHref: "data:text/plain;charset=utf-8," + encodeURIComponent("Sample placeholder untuk: " + cur.title + " (" + cur.category + "). Ganti dengan file asli .xlsx/.pbix/.pdf.") };
       caseSections = [
         { num:"01", title:"Masalah", body: cur.problem },
         { num:"02", title:"Pendekatan", body: cur.approach },
