@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cara Membuat Dashboard Penjualan yang Benar-benar Dibaca Pimpinan</title>
+<meta name="description" content="Banyak dashboard penjualan penuh grafik tapi tidak dipakai. Ini cara menyusun dashboard yang menjawab keputusan, bukan sekadar memamerkan angka. Oleh David Izzulhaq, Analis Data." />
+<link rel="canonical" href="https://davidizzulhaq.github.io/artikel/dashboard-penjualan/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cara Membuat Dashboard Penjualan yang Benar-benar Dibaca Pimpinan" />
+<meta property="og:description" content="Dashboard yang dirancang mundur dari keputusan, bukan dari data. Tiga lapis yang efektif." />
+<meta name="theme-color" content="#0B0E0D" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0B0E0D;color:#ECEAE2;font-family:'Inter',system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:#E2B65A}
+  .top{border-bottom:1px solid rgba(33,86,74,0.4);background:rgba(11,14,13,0.8)}
+  .top .in{max-width:760px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:12px}
+  .badge{width:34px;height:34px;border:1px solid rgba(201,154,60,0.55);border-radius:5px;display:grid;place-items:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:18px;color:#C99A3C}
+  .top a{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:#ECEAE2;text-decoration:none}
+  main{max-width:720px;margin:0 auto;padding:48px 24px 30px}
+  .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C99A3C;font-weight:600}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:14px 0 18px}
+  h1 .g{font-style:italic;color:#C99A3C}
+  .lede{font-size:18px;color:#BBC7BF;margin-bottom:8px}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:25px;color:#ECEAE2;margin:38px 0 10px}
+  p{font-size:16.5px;color:#C8D2CB;margin:14px 0}
+  ol,ul{margin:14px 0 14px 4px;padding-left:22px}
+  li{font-size:16.5px;color:#C8D2CB;margin:8px 0}
+  strong{color:#E2B65A}
+  .cta{margin:46px 0 10px;border:1px solid rgba(201,154,60,0.3);border-radius:10px;background:radial-gradient(120% 160% at 85% -20%, rgba(22,70,59,0.7), #0F1513 60%);padding:32px}
+  .cta h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:10px}
+  .cta p{margin:0 0 20px;color:#BBC7BF}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;padding:13px 24px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none}
+  .btn.p{background:#C99A3C;color:#0B0E0D}
+  .btn.s{border:1px solid rgba(201,154,60,0.4);color:#ECEAE2}
+  footer{max-width:720px;margin:30px auto 0;padding:30px 24px 70px;border-top:1px solid rgba(33,86,74,0.3);font-size:13px;color:#8b9990}
+</style>
+</head>
+<body>
+  <div class="top"><div class="in"><span class="badge">D</span><a href="/">David Izzulhaq, Analis Data</a></div></div>
+  <main>
+    <span class="eyebrow">Artikel</span>
+    <h1>Cara membuat dashboard penjualan yang <span class="g">benar-benar dibaca</span> pimpinan</h1>
+    <p class="lede">Hampir setiap bisnis sudah punya laporan penjualan. Yang sering tidak ada adalah dashboard yang benar-benar dipakai untuk mengambil keputusan.</p>
+
+    <h2>Masalahnya bukan kekurangan grafik</h2>
+    <p>Banyak dashboard gagal bukan karena kurang grafik, tapi karena terlalu banyak grafik yang tidak menjawab satu pertanyaan pun. Mata jadi lelah, dan akhirnya dashboard itu ditinggalkan.</p>
+
+    <h2>Mulai dari keputusan, bukan dari data</h2>
+    <p>Dashboard yang baik dirancang mundur dari pertanyaan yang ingin dijawab pemiliknya, misalnya: Produk mana yang menyumbang untung terbesar? Penjualan sedang naik atau melambat? Wilayah mana yang tertinggal? Setiap elemen di dashboard harus melayani salah satu pertanyaan itu. Kalau tidak, hapus.</p>
+
+    <h2>Tiga lapis yang efektif</h2>
+    <ol>
+      <li><strong>KPI utama di paling atas</strong>: angka inti (omzet, untung kotor, jumlah transaksi) plus pembanding terhadap periode sebelumnya. Inilah yang dilihat dalam 5 detik pertama.</li>
+      <li><strong>Tren dari waktu ke waktu</strong>: apakah keadaan membaik atau memburuk, dan sejak kapan.</li>
+      <li><strong>Rincian yang bisa ditindaklanjuti</strong>: per produk, per wilayah, per kanal, lengkap dengan filter agar bisa ditelusuri sendiri.</li>
+    </ol>
+
+    <h2>Hindari jebakan umum</h2>
+    <ul>
+      <li>Terlalu banyak warna dan grafik 3D yang justru mengaburkan.</li>
+      <li>Angka tanpa pembanding. Angka penjualan tanpa target atau periode lalu tidak berarti apa-apa.</li>
+      <li>Data yang tidak rapi di belakang layar, sehingga dashboard cepat rusak saat data diperbarui.</li>
+    </ul>
+
+    <div class="cta">
+      <h3>Ingin dashboard yang benar-benar dipakai?</h3>
+      <p>Saya bantu susun dashboard di Excel, Google Sheets, atau Power BI yang fokus pada keputusan, dengan data rapi di belakangnya sehingga tetap akurat saat diperbarui.</p>
+      <div class="btns">
+        <a class="btn p" href="/#/karya">Lihat studi kasus</a>
+        <a class="btn s" href="/#/kontak">Diskusikan kebutuhan</a>
+      </div>
+    </div>
+  </main>
+  <footer>Ditulis oleh David Izzulhaq, Analis Data &amp; BI. <a href="/">Kembali ke beranda</a></footer>
+</body>
+</html>
