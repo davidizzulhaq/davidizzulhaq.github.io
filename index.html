@@ -75,6 +75,7 @@
       </ul>
 
       <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+        <button type="button" onClick="{{ toggleLang }}" aria-label="{{ langAria }}" style="padding: 7px 11px; background: transparent; border: 1px solid rgba(33,86,74,0.6); border-radius: 5px; color: #BBC7BF; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; letter-spacing: 0.05em;" style-hover="border-color: rgba(201,154,60,0.6); color: #ECEAE2;">{{ langLabel }}</button>
         <a href="#/kontak" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #C99A3C; color: #0B0E0D; font-weight: 600; font-size: 14px; border-radius: 4px; text-decoration: none;" style-hover="background: #E2B65A;">
           Diskusi proyek
         </a>
@@ -842,9 +843,23 @@ const TITLES = {
   kontak: "Kontak, David Izzulhaq"
 };
 
+const TRANSLATIONS = {
+  "Beranda":"Home","Tentang":"About","Karya":"Work","Layanan":"Services","Kontak":"Contact",
+  "Diskusi proyek":"Start a project",
+  "Angka yang berantakan,":"Messy numbers,","saya rapikan jadi":"made into","keputusan yang jelas.":"clear decisions.",
+  "Dari data mentah dan tersebar menjadi dashboard, model, dan laporan yang bisa Anda audit sendiri. Setiap rumus transparan, tidak ada kotak hitam.":"From raw, scattered data into dashboards, models, and reports you can audit yourself. Every formula is transparent, no black boxes.",
+  "Lihat studi kasus":"View case studies","Diskusikan kebutuhan":"Discuss your needs",
+  "5+ thn":"5+ yrs","pengalaman analitik & data manufaktur":"in analytics & manufacturing data",
+  "6 kategori":"6 categories","layanan data, dari dashboard sampai dokumen":"data services, from dashboards to documents",
+  "rumus terbuka & bisa Anda audit sendiri":"open formulas, fully auditable",
+  "Berantakan":"Messy","Distribusi":"Distribution",
+  "Punya data berantakan? Saya ubah jadi keputusan yang jelas. Konsultasi awal gratis.":"Got messy data? I turn it into clear decisions. Free initial consultation.",
+  "Halaman":"Pages"
+};
+
 class Component extends DCLogic {
   state = {
-    page: "home", slug: null, filter: "Semua", mobileNavOpen: false, heroMode: "pipeline",
+    page: "home", slug: null, filter: "Semua", mobileNavOpen: false, heroMode: "pipeline", lang: "id",
     form: { nama:"", kontak:"", kebutuhan:"" }, submitted: false, formError: false,
     use3d: (typeof window !== "undefined") &&
       !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) &&
@@ -859,6 +874,7 @@ class Component extends DCLogic {
     if (!location.hash) { /* default home */ }
     this.applyRoute();
     this.initReveals();
+    this.applyLang();
   }
   componentWillUnmount() {
     window.removeEventListener("hashchange", this._onHash);
@@ -870,6 +886,22 @@ class Component extends DCLogic {
     if (prev.page !== this.state.page || prev.slug !== this.state.slug || prev.filter !== this.state.filter) {
       this.initReveals();
     }
+    this.applyLang();
+  }
+  setLang = (l) => { this.setState({ lang: l }); };
+  applyLang() {
+    const root = this._main && this._main.parentElement;
+    if (!root) return;
+    const en = this.state.lang === "en";
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    const nodes = []; let nd; while (nd = w.nextNode()) nodes.push(nd);
+    nodes.forEach(node => {
+      const orig = (node.__id != null) ? node.__id : node.nodeValue;
+      const key = orig.trim();
+      if (!key) return;
+      if (en) { const t = TRANSLATIONS[key]; if (t) { node.__id = orig; node.nodeValue = orig.replace(key, t); } }
+      else if (node.__id != null) { node.nodeValue = node.__id; node.__id = null; }
+    });
   }
   applyRoute() {
     const raw = (location.hash || "").replace(/^#\/?/, "");
@@ -1453,6 +1485,7 @@ class Component extends DCLogic {
       mobileNavOpen: s.mobileNavOpen,
       routeKey: page + (s.slug || "") + s.filter,
       toggleMobileNav: this.toggleMobileNav, closeMobileNav: this.closeMobileNav,
+      toggleLang: () => this.setLang(s.lang === "id" ? "en" : "id"), langLabel: s.lang === "id" ? "EN" : "ID", langAria: s.lang === "id" ? "Switch to English" : "Ganti ke Bahasa Indonesia",
       bindMain: (el) => { this._main = el; }, bindHeroWrap: this.bindHeroWrap, bindHeroCanvas: this.bindHeroCanvas,
       bindNetWrap: this.bindNetWrap, bindNetCanvas: this.bindNetCanvas,
       heroMode: s.heroMode,
