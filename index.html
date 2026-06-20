@@ -802,7 +802,7 @@ const PROCESS = [
 const PRICING = [
   { name:"Basic", tagline:"Satu analisis atau dashboard untuk kebutuhan spesifik.", pricePrefix:"mulai", price:"Rp 150 rb", popular:false,
     features:["1 dashboard atau 1 analisis","Hingga 2 sumber data","Revisi 2×","File siap pakai + dokumentasi rumus"], cta:"Pilih Basic" },
-  { name:"Pro", tagline:"Analisis lengkap plus dashboard dan rekomendasi tindakan.", pricePrefix:"mulai", price:"Rp 650 rb", popular:true,
+  { name:"Pro", tagline:"Analisis lengkap plus dashboard dan rekomendasi tindakan.", pricePrefix:"mulai", price:"Rp 300 rb", popular:true,
     features:["Analisis + dashboard + rekomendasi","Hingga 5 sumber data","Revisi 3×","Sesi penjelasan hasil","Dukungan 14 hari"], cta:"Pilih Pro" },
   { name:"Custom", tagline:"Proyek BI end-to-end dengan kebutuhan khusus.", pricePrefix:"", price:"Hubungi", popular:false,
     features:["Lingkup BI menyeluruh","Integrasi database & otomasi penuh","Revisi sesuai kesepakatan","Dukungan bulanan berkelanjutan"], cta:"Diskusikan kebutuhan" }
@@ -902,7 +902,12 @@ const TRANSLATIONS = {
   "Bahasa manusia":"Plain language","Saya terjemahkan istilah teknis ke keputusan bisnis yang konkret, tanpa jargon yang membingungkan.":"I translate technical terms into concrete business decisions, without confusing jargon.",
   "Rapi & berkelanjutan":"Tidy & sustainable","Hasil dirancang agar mudah Anda rawat sendiri setelah proyek selesai, bukan ketergantungan.":"The result is built so you can maintain it yourself after the project, not a dependency.",
   "Menjaga rahasia":"Confidential","Data Anda diperlakukan rahasia. NDA tersedia, dan data mentah dihapus setelah selesai jika diminta.":"Your data is kept confidential. An NDA is available, and raw data is deleted on request when done.",
-  "Excel lanjutan":"Advanced Excel","Excel lanjutan & VBA":"Advanced Excel & VBA","Otomasi & ETL ringan":"Light automation & ETL","Statistik & uji A/B":"Statistics & A/B testing"
+  "Excel lanjutan":"Advanced Excel","Excel lanjutan & VBA":"Advanced Excel & VBA","Otomasi & ETL ringan":"Light automation & ETL","Statistik & uji A/B":"Statistics & A/B testing",
+  "Pendapatan Rp24,8jt":"Revenue Rp24.8M","Margin +18%":"Margin +18%","Akurasi 92%":"Accuracy 92%",
+  "Sumber tersebar":"Scattered sources","Konsolidasi":"Consolidation","1 sumber kebenaran":"One source of truth",
+  "Data mentah":"Raw data","Belum tertata":"Untidy","Acak, berulang":"Random, repeated",
+  "μ rata-rata":"μ mean","p < 0,05":"p < 0.05",
+  "Penjualan":"Sales","Tren":"Trend","Pangsa pasar":"Market share"
 };
 
 class Component extends DCLogic {
@@ -1034,7 +1039,7 @@ class Component extends DCLogic {
         }
       }
       while (p < N) { const i3 = p * 3; o.pos[i3] = rnd(COLS * sx); o.pos[i3 + 1] = Math.random() * 6; o.pos[i3 + 2] = rnd(ROWS * sz); setC(o, i3, cGold); p++; }
-      o.labels = [{ x: -6, y: 6.4, z: -1, text: "Rp 24,8 jt" }, { x: 5, y: 7.1, z: 2, text: "+18% margin" }, { x: 0, y: 5.6, z: 3, text: "92% akurasi" }];
+      o.labels = [{ x: -6, y: 6.4, z: -1, text: "Pendapatan Rp24,8jt" }, { x: 5, y: 7.1, z: 2, text: "Margin +18%" }, { x: 0, y: 5.6, z: 3, text: "Akurasi 92%" }];
       return o;
     })();
 
