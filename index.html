@@ -1049,6 +1049,12 @@ class Component extends DCLogic {
       if (en) { const t = TRANSLATIONS[key]; if (t) { node.__id = orig; node.nodeValue = orig.replace(key, t); } }
       else if (node.__id != null) { node.nodeValue = node.__id; node.__id = null; }
     });
+    root.querySelectorAll("[placeholder]").forEach(el => {
+      const o = (el.__idph != null) ? el.__idph : el.getAttribute("placeholder");
+      const k = (o || "").trim(); if (!k) return;
+      if (en) { const t = TRANSLATIONS[k]; if (t) { el.__idph = o; el.setAttribute("placeholder", t); } }
+      else if (el.__idph != null) { el.setAttribute("placeholder", el.__idph); el.__idph = null; }
+    });
   }
   applyRoute() {
     const raw = (location.hash || "").replace(/^#\/?/, "");
