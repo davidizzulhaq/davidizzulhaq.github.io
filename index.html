@@ -590,6 +590,10 @@
                 <span style="width: 42px; height: 42px; border-radius: 8px; background: rgba(201,154,60,0.12); display: grid; place-items: center; color: #C99A3C; flex-shrink: 0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
                 <span style="flex: 1;"><span style="display: block; font-weight: 600; font-size: 14.5px; color: #ECEAE2;">Email</span><span style="display: block; font-size: 13px; color: #8b9990;">{{ emailDisplay }}</span></span>
               </a>
+              <a href="{{ fiverrLink }}" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: #121A17; border: 1px solid rgba(33,86,74,0.6); border-radius: 7px; text-decoration: none;" style-hover="border-color: rgba(29,191,115,0.6); background: rgba(29,191,115,0.05);">
+                <span style="width: 42px; height: 42px; border-radius: 8px; background: rgba(29,191,115,0.14); display: grid; place-items: center; color: #1DBF73; flex-shrink: 0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+                <span style="flex: 1;"><span style="display: block; font-weight: 600; font-size: 14.5px; color: #ECEAE2;">Fiverr</span><span style="display: block; font-size: 13px; color: #8b9990;">Pesan dengan proteksi pembeli</span></span>
+              </a>
             </div>
           </div>
 
@@ -660,6 +664,7 @@
         <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px;">
           <li><a href="{{ waLink }}" target="_blank" rel="noopener" style="font-size: 14px; color: #BBC7BF; text-decoration: none;" style-hover="color: #E2B65A;">WhatsApp</a></li>
           <li><a href="{{ mailLink }}" style="font-size: 14px; color: #BBC7BF; text-decoration: none;" style-hover="color: #E2B65A;">Email</a></li>
+          <li><a href="{{ fiverrLink }}" target="_blank" rel="noopener" style="font-size: 14px; color: #BBC7BF; text-decoration: none;" style-hover="color: #E2B65A;">Fiverr</a></li>
         </ul>
       </div>
     </div>
@@ -834,6 +839,7 @@ const VALUEPROPS = [
 const WA_NUMBER = "6282338970867";       // nomor WhatsApp David (internasional, tanpa +)
 const WA_DISPLAY = "+62 823-3897-0867";  // tampilan nomor
 const EMAIL = "davidizzulhaq@gmail.com"; // email David
+const FIVERR_GIG = "https://www.fiverr.com/david_izzulhaq/analyze-your-data-and-build-an-excel-or-google-sheets-dashboard"; // Fiverr gig
 
 const TITLES = {
   home: "David Izzulhaq, Data Analyst & Business Intelligence",
@@ -1037,7 +1043,8 @@ const TRANSLATIONS = {
   "5+ thn":"5+ yrs","6 kategori":"6 categories",
   "pengalaman analitik & data manufaktur":"analytics & manufacturing data experience",
   "layanan data, dari dashboard sampai dokumen":"data services, from dashboards to documents",
-  "rumus terbuka & bisa Anda audit sendiri":"open formulas you can audit yourself"
+  "rumus terbuka & bisa Anda audit sendiri":"open formulas you can audit yourself",
+  "Pesan dengan proteksi pembeli":"Order with buyer protection"
 };
 
 class Component extends DCLogic {
@@ -1709,7 +1716,7 @@ class Component extends DCLogic {
       submitForm: this.submitForm, resetForm: this.resetForm,
       onNama: this.onNama, onKontak: this.onKontak, onKebutuhan: this.onKebutuhan,
       waLink: "https://wa.me/" + WA_NUMBER, waDisplay: WA_DISPLAY,
-      mailLink: "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Kebutuhan analisis data"), emailDisplay: EMAIL,
+      mailLink: "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Kebutuhan analisis data"), emailDisplay: EMAIL, fiverrLink: FIVERR_GIG,
       year: new Date().getFullYear()
     };
   }
