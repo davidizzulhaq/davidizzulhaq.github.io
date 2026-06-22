@@ -21,7 +21,8 @@
 <meta name="twitter:title" content="David Izzulhaq, Data Analyst & BI Specialist" />
 <meta name="twitter:description" content="Angka yang berantakan, saya rapikan jadi keputusan yang jelas." />
 <meta name="twitter:image" content="https://davidizzulhaq.github.io/og.png" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-weight='bold' font-size='17' fill='%23FFFFFF' text-anchor='middle'%3EDI%3C/text%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" href="img/favicon.png?v=1" />
+<link rel="apple-touch-icon" href="img/favicon.png?v=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,6 +41,9 @@
   @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(10,10,10,0.45); } 70% { box-shadow: 0 0 0 14px rgba(10,10,10,0); } 100% { box-shadow: 0 0 0 0 rgba(10,10,10,0); } }
   @keyframes growBar { from { transform: scaleY(0.04); } to { transform: scaleY(1); } }
   *, *::before, *::after { box-sizing: border-box; }
+  /* Dark arrow cursor (black + white outline) so it stays visible on the light mono theme, whatever the OS cursor color */
+  body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M2%201L2%2017L6%2013.2L8.7%2019L11%2018L8.3%2012.4L13.5%2012.4Z'%20fill='%230A0A0A'%20stroke='%23FFFFFF'%20stroke-width='1.5'%20stroke-linejoin='round'/%3E%3C/svg%3E") 2 1, auto; }
+  a, button, [role="button"], summary { cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M2%201L2%2017L6%2013.2L8.7%2019L11%2018L8.3%2012.4L13.5%2012.4Z'%20fill='%230A0A0A'%20stroke='%23FFFFFF'%20stroke-width='1.5'%20stroke-linejoin='round'/%3E%3C/svg%3E") 2 1, auto !important; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
   /* ---- Responsive (tablet / phone) ---- */
   @media (max-width: 900px) {
@@ -265,7 +269,7 @@
           <span style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0A0A0A; font-weight: 600;">Bukti &amp; jaminan</span>
           <h2 style="font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: clamp(28px, 3.4vw, 38px); margin: 12px 0 0; color: #0A0A0A;">Dipercaya untuk hasil, bukan janji</h2>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;" data-card-grid="1">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;" data-card-grid="1">
           <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
             <figure data-reveal="1" style="margin: 0; background: #F4F4F4; border: 1px solid rgba(10,10,10,0.16); border-radius: 7px; padding: 30px; display: flex; flex-direction: column;">
               <div aria-hidden="true" style="font-family: 'Archivo', system-ui, sans-serif; font-size: 44px; color: rgba(10,10,10,0.45); line-height: 0.5; height: 22px;">&ldquo;</div>
@@ -309,8 +313,8 @@
             <p style="font-size: 16.5px; line-height: 1.65; color: #6B6B6B; margin: 18px 0 0; max-width: 560px;">Yang membedakan: model dan rumus yang saya buat <span style="color: #333333;">transparan dan bisa Anda audit sendiri</span>. Anda tidak hanya menerima hasil, Anda memahami bagaimana angka itu sampai ke sana.</p>
           </div>
           <div data-reveal="1" style="position: relative;">
-            <div style="aspect-ratio: 4/5; border-radius: 8px; border: 1px solid rgba(10,10,10,0.16); overflow: hidden;">
-              <img src="img/profil.jpg" alt="Foto David Izzulhaq, Analis Data" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+            <div style="aspect-ratio: 2/3; border-radius: 8px; border: 1px solid rgba(10,10,10,0.16); overflow: hidden;">
+              <img src="img/profil.jpg?v=2" alt="David Izzulhaq, Data Analyst" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
             </div>
             <div style="position: absolute; bottom: -16px; left: -16px; background: #0A0A0A; color: #FFFFFF; padding: 14px 20px; border-radius: 6px;">
               <div style="font-family: 'Archivo', system-ui, sans-serif; font-weight: 600; font-size: 22px; line-height: 1;">5+ thn</div>
@@ -432,7 +436,7 @@
         </div>
 
         <div style="margin: 32px 0 18px; border-radius: 8px; border: 1px solid rgba(10,10,10,0.16); background: #ffffff; padding: 16px; overflow: hidden;">
-          <img src="{{ currentCase.image }}" alt="{{ currentCase.imgAlt }}" style="width: 100%; display: block; border-radius: 2px;" />
+          <img src="{{ currentCase.image }}" alt="{{ currentCase.imgAlt }}" loading="lazy" style="width: 100%; display: block; border-radius: 2px;" />
         </div>
         <sc-for list="{{ currentCase.gallery }}" as="g" hint-placeholder-count="2">
           <div style="margin: 18px 0; border-radius: 8px; border: 1px solid rgba(10,10,10,0.16); background: #ffffff; padding: 16px; overflow: hidden;">
@@ -512,7 +516,7 @@
       </section>
 
       <section style="max-width: 1180px; margin: 0 auto; padding: 20px 24px 30px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 20px;" data-card-grid="1">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 20px;" data-card-grid="1">
           <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
             <div data-reveal="1" style="background: #F4F4F4; border: 1px solid rgba(10,10,10,0.16); border-radius: 7px; padding: 30px; display: flex; flex-direction: column;">
               <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
@@ -541,7 +545,7 @@
             <span style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0A0A0A; font-weight: 600;">Proses</span>
             <h2 style="font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: clamp(28px, 3.4vw, 38px); margin: 12px 0 0; color: #0A0A0A;">Empat langkah, hasil yang transparan</h2>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;" data-card-grid="1">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px;" data-card-grid="1">
             <sc-for list="{{ processSteps }}" as="st" hint-placeholder-count="4">
               <div data-reveal="1" style="position: relative; background: #F4F4F4; border: 1px solid rgba(10,10,10,0.16); border-radius: 7px; padding: 28px;">
                 <div style="font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 40px; color: rgba(10,10,10,0.35); line-height: 1; margin-bottom: 14px;">{{ st.num }}</div>
@@ -712,7 +716,7 @@ const CASES = [
     solution:"Peta pelanggan dan produk bernilai: siapa yang harus dijaga, siapa yang hampir pergi, dan produk mana yang layak diprioritaskan.",
     results:[ {value:"58%",label:"pendapatan dari 28% pelanggan teratas"}, {value:"Rp49 jt",label:"pelanggan berisiko hilang, kini terdeteksi"}, {value:"10 dari 24",label:"produk penyumbang 80% pendapatan"} ],
     chartTitle:"Kontribusi pendapatan per segmen (%)", chart:[ {label:"Champions",value:58}, {label:"Loyal",value:22}, {label:"Berisiko",value:12}, {label:"Baru",value:8} ], chartUnit:"%",
-    sampleType:"dataset (.csv)", sampleFile:"data/ecommerce_orders.csv", sampleLabel:"Unduh dataset (1.564 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-01-Ecommerce-Sales-Analysis.xlsx", sampleLabel:"Download the full workbook (1,564 rows, RFM + Pareto)" },
   { slug:"retensi-churn-langganan", image:"img/02.png?v=m2", category:"Analisis Pelanggan",
     title:"Retensi & Churn Langganan", client:"Bisnis langganan (SaaS)", scope:"Analisis cohort & churn", duration:"2 minggu",
     summary:"Melacak 1.200 pelanggan langganan untuk melihat kapan, siapa, dan kenapa mereka pergi.",
@@ -722,7 +726,7 @@ const CASES = [
     solution:"Peta retensi yang menunjukkan titik bocor terbesar dan paket mana yang paling rapuh, plus workbook yang bisa diperbarui sendiri.",
     results:[ {value:"68%",label:"retensi di bulan ke-6"}, {value:"2,2x",label:"churn Basic dibanding Business"}, {value:"Rp155 jt",label:"MRR aktif terpetakan"} ],
     chartTitle:"Tingkat churn per paket (%)", chart:[ {label:"Basic",value:64}, {label:"Pro",value:40}, {label:"Business",value:29} ], chartUnit:"%",
-    sampleType:"deliverable (.xlsx)", sampleFile:"data/Cohort-Revenue-Retention.xlsx", sampleLabel:"Unduh workbook cohort (.xlsx)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-02-Subscription-Churn-Retention.xlsx", sampleLabel:"Download the full workbook (1,200 subs, cohort retention)" },
   { slug:"funnel-performa-kampanye", image:"img/03.png?v=m2", category:"Marketing & Eksperimen",
     title:"Funnel & Performa Kampanye", client:"Bisnis dengan iklan multi-kanal", scope:"Analisis marketing & ROAS", duration:"2 minggu",
     summary:"Membedah 1.665 catatan kampanye untuk tahu kanal iklan mana yang benar-benar balik modal.",
@@ -732,7 +736,7 @@ const CASES = [
     solution:"Peringkat efisiensi tiap kanal beserta rekomendasi realokasi budget ke kanal yang paling produktif.",
     results:[ {value:"1,94x",label:"ROAS gabungan"}, {value:"+55%",label:"ROAS Google di atas TikTok"}, {value:"Rp153 rb",label:"biaya akuisisi per pelanggan"} ],
     chartTitle:"ROAS per kanal berbayar (x)", chart:[ {label:"Google",value:2.1}, {label:"Meta",value:1.9}, {label:"TikTok",value:1.4} ], chartUnit:"x",
-    sampleType:"dataset (.csv)", sampleFile:"data/campaign_performance.csv", sampleLabel:"Unduh dataset (1.665 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-03-Marketing-Funnel-ROI.xlsx", sampleLabel:"Download the full workbook (1,665 rows, funnel + ROAS)" },
   { slug:"forecasting-penjualan", image:"img/04.png?v=m2", category:"Forecasting & Harga",
     title:"Forecasting Penjualan", client:"Bisnis ritel musiman", scope:"Deret waktu & proyeksi", duration:"2 minggu",
     summary:"Mengubah 1.096 hari data penjualan jadi proyeksi enam bulan yang akurasinya teruji.",
@@ -742,7 +746,7 @@ const CASES = [
     solution:"Proyeksi bulanan dengan tingkat error yang sudah teruji, untuk perencanaan stok dan arus kas.",
     results:[ {value:"4,8%",label:"error backtest (MAPE)"}, {value:"+39%",label:"lonjakan musiman teridentifikasi"}, {value:"6 bln",label:"horizon proyeksi untuk perencanaan"} ],
     chartTitle:"Indeks musiman per bulan", chart:[ {label:"Jan",value:92}, {label:"Mei",value:139}, {label:"Sep",value:100}, {label:"Des",value:140} ], chartUnit:"",
-    sampleType:"dataset (.csv)", sampleFile:"data/daily_sales.csv", sampleLabel:"Unduh dataset (1.096 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-04-Sales-Forecasting.xlsx", sampleLabel:"Download the full workbook (1,096 days, forecast + MAPE)" },
   { slug:"uji-ab-statistik", image:"img/05.png?v=m2", category:"Marketing & Eksperimen",
     title:"Uji A/B Statistik", client:"Toko online", scope:"Eksperimen & statistik", duration:"1 minggu",
     summary:"Menguji dua versi halaman atas 2.622 pengunjung untuk memastikan keputusan, bukan menebak.",
@@ -752,7 +756,7 @@ const CASES = [
     solution:"Vonis berbasis bukti: versi pemenang beserta tingkat keyakinan statistiknya, siap dirilis.",
     results:[ {value:"+25,6%",label:"kenaikan konversi versi B"}, {value:"p=0,037",label:"signifikan secara statistik"}, {value:"+27,4%",label:"pendapatan per pengunjung"} ],
     chartTitle:"Tingkat konversi A vs B (%)", chart:[ {label:"Kontrol A",value:10.1}, {label:"Variasi B",value:12.7} ], chartUnit:"%",
-    sampleType:"dataset (.csv)", sampleFile:"data/ab_test.csv", sampleLabel:"Unduh dataset (2.622 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-05-AB-Test-Significance.xlsx", sampleLabel:"Download the full workbook (2,622 visitors, z-test)" },
   { slug:"strategi-harga-elastisitas", image:"img/06.png?v=m2", category:"Forecasting & Harga",
     title:"Strategi Harga & Elastisitas", client:"Toko ritel", scope:"Elastisitas harga", duration:"2 minggu",
     summary:"Mengukur seberapa sensitif permintaan tiap produk terhadap harga, lewat 1.500 observasi.",
@@ -762,7 +766,7 @@ const CASES = [
     solution:"Peta produk inelastis (aman dinaikkan harganya) versus elastis (harus dijaga), dengan angka, bukan tebakan.",
     results:[ {value:"5 dari 10",label:"produk tahan kenaikan harga"}, {value:"+35%",label:"ruang harga optimal pada produk inelastis"}, {value:"per produk",label:"elastisitas terukur, bukan tebakan"} ],
     chartTitle:"Elastisitas harga (makin kecil = makin tahan)", chart:[ {label:"Garam",value:0.28}, {label:"Beras",value:0.6}, {label:"Sabun",value:1.3}, {label:"Snack",value:2.04} ], chartUnit:"",
-    sampleType:"dataset (.csv)", sampleFile:"data/price_demand.csv", sampleLabel:"Unduh dataset (1.500 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-06-Price-Elasticity.xlsx", sampleLabel:"Download the full workbook (1,500 rows, elasticity)" },
   { slug:"optimasi-inventori", image:"img/07.png?v=m2", category:"Operasi & Inventori",
     title:"Optimasi Inventori", client:"Toko dengan banyak SKU", scope:"Klasifikasi ABC & stok", duration:"2 minggu",
     summary:"Membedah 1.560 catatan permintaan untuk menemukan modal yang membeku di stok mati.",
@@ -772,7 +776,7 @@ const CASES = [
     solution:"Daftar pesan ulang siap pakai (Excel format akuntansi) dan peta modal yang terjebak di stok mati.",
     results:[ {value:"Rp310 jt",label:"modal terjebak di stok mati (44%)"}, {value:"79%",label:"nilai stok ada di 11 SKU kelas A"}, {value:"3 SKU",label:"perlu pesan ulang segera"} ],
     chartTitle:"Nilai stok per kelas ABC (juta Rp)", chart:[ {label:"Kelas A",value:562}, {label:"Kelas B",value:108}, {label:"Kelas C",value:42} ], chartUnit:"jt",
-    sampleType:"deliverable (.xlsx)", sampleFile:"data/Reorder-ABC.xlsx", sampleLabel:"Unduh daftar reorder (.xlsx)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-07-Inventory-ABC-Reorder.xlsx", sampleLabel:"Download the full workbook (30 SKUs, ABC + EOQ)" },
   { slug:"segmentasi-pelanggan", image:"img/08.png?v=m2", category:"Analisis Pelanggan",
     title:"Segmentasi Pelanggan (K-Means)", client:"Bisnis dengan basis pelanggan besar", scope:"Clustering / machine learning", duration:"2 minggu",
     summary:"Membiarkan algoritma menemukan empat kelompok alami di antara 1.100 pelanggan.",
@@ -782,7 +786,7 @@ const CASES = [
     solution:"Empat segmen dengan profil dan strategi berbeda, siap dipakai menarget kampanye secara tepat.",
     results:[ {value:"4 segmen",label:"ditemukan lewat clustering"}, {value:"32%",label:"pendapatan dari 9% pelanggan VIP"}, {value:"Rp8,5 jt",label:"rata-rata belanja pelanggan VIP"} ],
     chartTitle:"Kontribusi pendapatan per segmen (%)", chart:[ {label:"VIP",value:32}, {label:"Loyal",value:30}, {label:"Hemat",value:24}, {label:"Baru",value:14} ], chartUnit:"%",
-    sampleType:"dataset (.csv)", sampleFile:"data/customers.csv", sampleLabel:"Unduh dataset (1.100 baris)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-08-Customer-Segmentation.xlsx", sampleLabel:"Download the full workbook (1,100 customers, segments)" },
   { slug:"survei-nps-pelanggan", image:"img/09.png?v=m2", category:"Analisis Pelanggan",
     title:"Survei & NPS Pelanggan", client:"Bisnis layanan", scope:"NPS & analisis pendorong", duration:"1 minggu",
     summary:"Menghitung NPS dari 1.150 respon dan menunjuk satu titik sentuh yang harus dibenahi lebih dulu.",
@@ -792,7 +796,7 @@ const CASES = [
     solution:"Prioritas perbaikan yang jelas: satu titik sentuh yang paling menyeret loyalitas, didukung angka.",
     results:[ {value:"NPS 8",label:"skor keseluruhan"}, {value:"Pengiriman",label:"titik sentuh paling menyeret"}, {value:"-5 ke +17",label:"tren membaik dalam 9 bulan"} ],
     chartTitle:"Skor kepuasan per titik sentuh", chart:[ {label:"Produk",value:86}, {label:"Layanan",value:78}, {label:"Harga",value:70}, {label:"Pengiriman",value:61} ], chartUnit:"",
-    sampleType:"dataset (.csv)", sampleFile:"data/survey_nps.csv", sampleLabel:"Unduh dataset (1.150 respon)" },
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-09-NPS-Analysis.xlsx", sampleLabel:"Download the full workbook (1,150 responses, NPS)" },
   { slug:"analisis-operasi-logistik", image:"img/10.png?v=m2", category:"Operasi & Inventori",
     title:"Analisis Operasi Logistik", client:"Layanan pengiriman", scope:"Analisis SLA & operasi", duration:"2 minggu",
     summary:"Membongkar rata-rata 1.300 pengiriman untuk menemukan satu zona yang diam-diam menyeret kinerja.",
@@ -802,7 +806,7 @@ const CASES = [
     solution:"Peta kinerja per zona yang menunjukkan persis di mana kebocoran terjadi dan apa yang harus dibenahi dulu.",
     results:[ {value:"93,5%",label:"tepat waktu keseluruhan"}, {value:"Bogor 70%",label:"zona penyeret, kini ditemukan"}, {value:"Rp28 rb",label:"biaya rata-rata per pengiriman"} ],
     chartTitle:"Tepat waktu per zona (%)", chart:[ {label:"Jakarta",value:96}, {label:"Bekasi",value:88}, {label:"Depok",value:85}, {label:"Bogor",value:70} ], chartUnit:"%",
-    sampleType:"dataset (.csv)", sampleFile:"data/deliveries.csv", sampleLabel:"Unduh dataset (1.300 baris)" }
+    sampleType:"complete workbook (.xlsx)", sampleFile:"data/Case-10-Delivery-Operations.xlsx", sampleLabel:"Download the full workbook (1,300 deliveries, on-time)" }
 ];
 
 const SERVICES = [
@@ -989,6 +993,11 @@ const TRANSLATIONS = {
   "Ceritakan kondisi data dan keputusan yang ingin Anda ambil. Konsultasi awal gratis, tanpa komitmen.":"Tell me about your data and the decisions you want to make. Free initial consultation, no commitment.",
   "Mulai percakapan":"Start the conversation","Chat WhatsApp":"Chat on WhatsApp",
   "Saya membantu bisnis":"I help businesses","mempercayai":"trust","angkanya sendiri.":"their own numbers.",
+  "Satu rekan untuk seluruh siklus data Anda":"One partner for your entire data cycle",
+  "Setiap rumus, perhitungan, dan dataset bisa Anda unduh dan periksa sendiri. Tidak ada kotak hitam, semua bisa diaudit.":"Every formula, calculation, and dataset is yours to download and verify. No black boxes, everything is auditable.",
+  "Saya terjemahkan istilah teknis jadi keputusan bisnis yang konkret. Anda tidak perlu jadi orang data untuk paham hasilnya.":"I turn technical terms into concrete business decisions. You don't need to be a data person to understand the results.",
+  "Belum sesuai? Revisi sampai cocok dengan kesepakatan. Hasilnya dirancang agar bisa Anda rawat sendiri, bukan bikin ketergantungan.":"Not a fit yet? Revisions until it matches what we agreed. The result is designed for you to maintain yourself, not to create dependency.",
+  "Dibuat dengan data yang rapi.":"Built with tidy data.",
   "Saya David Izzulhaq, data analyst dengan latar pengalaman di procurement dan analitik data manufaktur. Saya terbiasa bekerja dengan data operasional yang besar, berantakan, dan tersebar di banyak sumber.":"I'm David Izzulhaq, a data analyst with a background in procurement and manufacturing data analytics. I'm used to working with large, messy operational data spread across many sources.",
   "Yang membedakan: model dan rumus yang saya buat":"What sets it apart: the models and formulas I build are",
   "transparan dan bisa Anda audit sendiri":"transparent and auditable by you",
@@ -1066,7 +1075,7 @@ const TRANSLATIONS = {
 
 class Component extends DCLogic {
   state = {
-    page: "home", slug: null, filter: "Semua", mobileNavOpen: false, heroMode: "pipeline", lang: "id",
+    page: "home", slug: null, filter: "Semua", mobileNavOpen: false, heroMode: "berantakan", lang: "en",
     form: { nama:"", kontak:"", kebutuhan:"" }, submitted: false, formError: false,
     use3d: (typeof window !== "undefined") &&
       !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) &&
@@ -1085,6 +1094,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener("hashchange", this._onHash);
+    this._stopHeroAuto();
     if (this._hero && this._hero.dispose) this._hero.dispose();
     if (this._net && this._net.dispose) this._net.dispose();
   }
@@ -1305,17 +1315,31 @@ class Component extends DCLogic {
     return { N, modes: { berantakan, pipeline, dashboard, histogram, bars } };
   }
 
-  switchHeroMode = (mode) => {
+  switchHeroMode = (mode) => {        // user click: take manual control, stop the auto story
+    this._stopHeroAuto();
+    this._applyHeroMode(mode);
+  };
+  _applyHeroMode = (mode) => {
     this.setState({ heroMode: mode });
     if (this._hero && this._hero.setMode) this._hero.setMode(mode);
   };
+  _startHeroAuto = () => {            // auto-play the transformation story until the user interacts
+    this._stopHeroAuto();
+    const order = ["berantakan", "pipeline", "dashboard", "histogram", "bars"];
+    this._heroAuto = setInterval(() => {
+      const idx = order.indexOf(this.state.heroMode);
+      this._applyHeroMode(order[(idx + 1) % order.length]);
+    }, 3400);
+  };
+  _stopHeroAuto = () => { if (this._heroAuto) { clearInterval(this._heroAuto); this._heroAuto = null; } };
 
   bindHeroWrap = (el) => { this._heroWrap = el; };
   bindHeroCanvas = (el) => {
     if (el) {
       this._heroCanvas = el;
-      this.ensureThree(() => { if (this._heroCanvas === el && !this._hero) this._hero = this.initHero(el); });
+      this.ensureThree(() => { if (this._heroCanvas === el && !this._hero) { this._hero = this.initHero(el); this._startHeroAuto(); } });
     } else {
+      this._stopHeroAuto();
       if (this._hero && this._hero.dispose) this._hero.dispose();
       this._hero = null; this._heroCanvas = null;
     }
@@ -1335,7 +1359,7 @@ class Component extends DCLogic {
 
     const built = this.buildHeroModes(THREE);
     const N = built.N, modes = built.modes;
-    let active = (this.state.heroMode && modes[this.state.heroMode]) ? this.state.heroMode : "pipeline";
+    let active = (this.state.heroMode && modes[this.state.heroMode]) ? this.state.heroMode : "berantakan";
 
     // chaos cloud + working buffers
     const chaos = new Float32Array(N * 3);
