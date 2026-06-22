@@ -52,7 +52,8 @@
   @media (max-width: 560px) {
     [data-footer-grid] { grid-template-columns: 1fr !important; }
     nav[aria-label="Navigasi utama"] { height: 60px !important; }
-    [data-hero-canvas-wrap] { display: none !important; }
+    [data-header-cta] { display: none !important; }
+    [data-hero-canvas-wrap] { min-height: 200px !important; margin-top: 8px; }
   }
 </style>
 <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
@@ -90,7 +91,7 @@
 
       <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
         <button type="button" onClick="{{ toggleLang }}" aria-label="{{ langAria }}" style="padding: 7px 11px; background: transparent; border: 1px solid rgba(10,10,10,0.16); border-radius: 5px; color: #6B6B6B; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; letter-spacing: 0.05em;" style-hover="border-color: rgba(10,10,10,0.6); color: #0A0A0A;">{{ langLabel }}</button>
-        <a href="#/kontak" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #0A0A0A; color: #FFFFFF; font-weight: 600; font-size: 14px; border-radius: 4px; text-decoration: none;" style-hover="background: #333333;">
+        <a href="#/kontak" data-header-cta="1" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #0A0A0A; color: #FFFFFF; font-weight: 600; font-size: 14px; border-radius: 4px; text-decoration: none;" style-hover="background: #333333;">
           Diskusi proyek
         </a>
         <button type="button" aria-label="Buka menu navigasi" onClick="{{ toggleMobileNav }}" style="display: none; align-items: center; justify-content: center; width: 42px; height: 42px; background: transparent; border: 1px solid rgba(10,10,10,0.16); border-radius: 5px; color: #0A0A0A; cursor: pointer;" data-mobile-toggle="1">
